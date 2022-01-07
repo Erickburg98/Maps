@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src='js/bootstrap.js'></script>
+        <script src='js/coverflow/coverflow.js'></script>
+        <link rel="stylesheet" href="css/coverflow.css">
+        <!-- CSS -->
+        <link rel="shortcut icon" href="https://framework-gb.cdn.gob.mx/favicon.ico">
+        <link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet">
+        
+        <!-- Mapbox -->
+        <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
+        <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+
+        <title>Directorio de Sistemas de Control del SIAP</title>
+
+    </head>
+    <body>
+        <!-- Contenido -->
+        <main class="page">
+            <div>
+            <img class="img-heig" src="images/siaplogo.png" >
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div id="wrapperMenu">	            
+                            <ul id="menu-dashboard"class="nav nav-pills nav-stacked">
+                                    <li class="active"><a href="#"><span class="icon-home4"></span> <span class="hidden-xs">Inicio</span></a></li>
+                                    <li><a href="#"><span class="icon-user3"></span> <span class="hidden-xs">Opción 1</span></a></li>
+                                    <li><a href="#"><span class="icon-search-2"></span> <span class="hidden-xs"> Opción 2</span></a></li>
+                                    <li><a href="#"><span class="icon-speacker-1"></span> <span class="hidden-xs"> Opción 3</span></a></li>            
+                                    <li><a href="#"><span class="icon-files"></span> <span class="hidden-xs">Opción 4</a></li>
+                                    
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#submenu" aria-expanded="false">
+                                            <span class="icon-link2"></span>
+                                            Opción 5<span class="caret"></span></a>
+                                        <ul class="nav collapse" id="submenu" role="menu" aria-labelledby="btn-1">                        
+                                            <li><a href="#">Opción 5.1</a></li>
+                                            <li><a href="#">Opción 5.2</a></li>
+                                            <li><a href="#">Opción 5.3</a></li>
+                                            <li><a href="#">Opción 5.4</a></li>                  
+                                        </ul>
+                                    </li>
+                                    <li><a href="#"><span class="icon-link2"></span> <span class="hidden-xs">Opción 6</span></a></li>
+                                    <li><a href="#"><span class="icon-link2"></span> <span class="hidden-xs">Opción 7</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <nav class="navbar navbar-default">
+                                    <div class="container-fluid">
+                                      <div class="navbar-header">
+                                        <a class="navbar-brand" href="#">Mapa</a>
+                                      </div>
+                                      <ul class="nav navbar-nav">
+                                        <li><a href="#" id="fun_map"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-print"></span> Imprimir</a></li>
+                                        <li><a href="#" id="fun_docs"><span class="glyphicon glyphicon-folder-open"></span> Documentos</a></li>
+                                      </ul>
+                                    </div>
+                                  </nav>
+                            </div>
+            
+                        </div>
+
+                        <div class="row" id ="div_mapa">
+                            <div class="col-md-12">
+                                    <div class="map-responsive">
+                                    <div id="map" class="map"></div>
+
+                                    <div class="map-overlay top">
+                                        <div class="addScroll">
+                                            <div class="map-overlay-inner" id="divfull">
+                                                <button type="button" id="esconder" class="glyphicon glyphicon-resize-small"></button>
+                                                <fieldset>
+                                                    <label>Entidades:</label>
+                                                    <input type="checkbox" id="cbYucatan" checked="">
+                                                    <label for="animate" id="animateLabel">Yucatan</label>
+                                                    <br>
+                                                    <input type="checkbox" id="cbQuintana" checked="">
+                                                    <label for="animate" id="animateLabel">Quintana Roo</label>
+                                                    <br>
+                                                    <input type="checkbox" id="cbCampeche" checked="">
+                                                    <label for="animate" id="animateLabel">Campeche</label>
+                                                    <br>
+                                                    <input type="checkbox" id="cbTabasco" checked="">
+                                                    <label for="animate" id="animateLabel">Tabasco</label>
+                                                    <br>
+                                                    <input type="checkbox" id="cbChiapas" checked="">
+                                                    <label for="animate" id="animateLabel">Chiapas</label>
+                                                    <br>
+                                                    <input type="checkbox" id="cbOaxaca" checked="">
+                                                    <label for="animate" id="animateLabel">Oaxaca</label>
+                                                    <br>
+                                                    <input type="checkbox" id="cbVeracruz" checked="">
+                                                    <label for="animate" id="animateLabel">Veracruz</label>
+                                                    <br>
+                                                </fieldset>
+                                                <!-- <fieldset>
+                                                    <label>Oaxaca</label>
+                                                    <input type="checkbox" id="animate" name="animate" checked="">
+                                                    <label for="animate" id="animateLabel">Oaxaca</label>
+                                                </fieldset>-->
+                                                
+                                            </div>
+
+                                            <div class="map-overlay-inner" id="divmin" style="display: none">
+                                                <button type="button" id="mostrar" class="glyphicon glyphicon-resize-full"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <style>
+            #map { 
+                position: absolute;
+                top: 0;
+                bottom: 100px;
+                width: 100%;
+                height:100%;
+            }
+            #inputs {
+                position: absolute;
+                top: 0;
+                left: 0;
+                padding: 10px;
+            }
+            .example{
+                height: 250px;
+                width: 100%;
+                border: 5px solid black;
+                background-color: lightblue;
+                margin: 0 auto;
+            }
+
+            .sidebar{
+                height:500px;  
+                width: 100%;
+                border: 5px solid black;
+                background-color: lightblue;
+                margin: 0 auto;
+            }
+
+            .addScroll{
+                overflow-y:auto;
+                height: 100%;
+            }
+
+            /*
+            *  MENU HORIZONTAL DASHBOARD
+            *-------------------------------------------------------*/
+            #wrapperMenu {
+                width: 100%;
+            }
+
+            .wrappernav-dashboard {
+                /*background: #d3d3d3;*/
+                /*border: 1px dashed orange;*/
+                width: 100%;
+                padding: 10px;
+                margin: 0;
+            }
+            #menu-dashboard {
+                /*border: 1px dashed red;*/
+                border-left: 1px solid #bcbcbc; 
+                border-right: 1px solid #bcbcbc;
+                border-top: 1px solid #bcbcbc;
+                border-radius: 5px;
+                overflow: hidden;
+            }
+            #menu-dashboard .active a {
+                background-color: #A22242;
+                border-radius: 0;
+                color: #fff;
+            }
+            #menu-dashboard li {
+                border-radius: 0;
+                margin: 0;
+                padding: 0;
+                border-bottom: 1px solid #bcbcbc; 
+            }
+            #menu-dashboard li > a {
+                border-radius: 0;
+                padding: 10px;
+                color: #444;
+            }
+            #menu-dashboard > li > a:hover,
+            #menu-dashboard > li > a:focus {
+                color: #fff;
+                background: #A22242;
+                -webkit-transition: all 1ms ease-in-out;
+                -moz-transition: all 1ms ease-in-out;
+                -ms-transition: all 1ms ease-in-out;
+                -o-transition: all 1ms ease-in-out;
+                transition: all 1ms ease-in-out;
+            }
+            #submenu {
+                background: #333;
+            }
+            #submenu li {
+                border: none;
+            }
+            #submenu li a {
+                color: #fff;
+                padding: 10px;
+                margin: 0;
+                text-indent: 20px;
+            }
+            #submenu li a:hover {
+                background: rgba(0,0,0,.5);
+            }
+
+            .map-responsive{
+                overflow:hidden;
+                padding-bottom:50%;
+                position:relative;
+                height:0;
+            }
+            .map-responsive iframe{
+                left:0;
+                top:0;
+                height:100%;
+                width:100%;
+                position:absolute;
+            }
+
+            .map-overlay {
+                font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+                position: absolute;
+                width: 200px;
+                top: 0;
+                left: 0;
+                padding: 10px;
+            }
+
+            .map-overlay .map-overlay-inner {
+                background-color: #fff;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+                border-radius: 3px;
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+
+            .map-overlay-inner fieldset {
+                border: none;
+                padding: 0;
+                margin: 0 0 10px;
+            }
+
+            .map-overlay-inner fieldset:last-child {
+                margin: 0;
+            }
+
+            .map-overlay-inner select {
+                width: 100%;
+            }
+
+            .map-overlay-inner p {
+                margin: 0;
+            }
+
+            .map-overlay-inner label {
+                display: block;
+                font-weight: bold;
+            }
+
+            .map-overlay-inner button {
+                background-color: cornflowerblue;
+                color: white;
+                border-radius: 5px;
+                display: inline-block;
+                height: 20px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .map-overlay-inner button:focus {
+                outline: none;
+            }
+
+            .map-overlay-inner button:hover {
+                background-color: blue;
+                box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.1);
+                -webkit-transition: background-color 500ms linear;
+                -ms-transition: background-color 500ms linear;
+                transition: background-color 500ms linear;
+            }
+
+            .offset > label,
+            .offset > input {
+                display: inline;
+            }
+
+            #animateLabel {
+                display: inline-block;
+                min-width: 20px;
+            }
+
+            .addScroll{
+                height: 350px;
+            }
+
+            @media only screen and (max-width:800px) {
+                /* For tablets: */
+                .addScroll{
+                    height: 250px;
+                }
+
+                .map-overlay {
+                    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+                    position: absolute;
+                    width: 150px;
+                    top: 0;
+                    left: 0;
+                    padding: 10px;
+                }
+
+            }
+            @media only screen and (max-width:500px) {
+                /* For mobile phones: */
+                .addScroll{
+                    height: 100px;
+                }
+
+                .map-overlay {
+                    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+                    position: absolute;
+                    width: 100px;
+                    top: 0;
+                    left: 0;
+                    padding: 10px;
+                }
+            }
+
+
+        </style>
+
+        <!-- JS -->
+        <script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
+
+        <script>
+            const statesAndColors = ['Riego', '#5B2C6F ', 'Temporal', '#2874A6'];
+            mapboxgl.accessToken = 'pk.eyJ1IjoiZXJpY2tidXJnOTgiLCJhIjoiY2t3ejdhYWxtMHM0bTMycTlqc3gzYjh2eSJ9.EQiDA0-pC0GTcLwccaIy2g';
+            const map = new mapboxgl.Map({
+              container: 'map',
+              style: 'mapbox://styles/mapbox/streets-v11',
+              center: [-102.512448041084141, 23.900244557956118], // starting position [lng, lat]
+              zoom: 4.2 // starting zoom
+            });
+        
+            // Wait until the map has finished loading.
+            map.on('load', () => {
+        
+              map.addSource('Yucatan', {
+                'type': 'geojson',
+                'data': './geojson/yucatan.geojson'
+              });
+              map.addLayer({
+                'id': 'Yucatan',
+                'type': 'fill',
+                'source': 'Yucatan',
+                'layout': {
+                  // Make the layer visible by default.
+                  'visibility': 'visible'
+                },
+                'paint': {
+                  'fill-color': ['match', ['string', ['get', 'MOD_HIDR']], ...statesAndColors, '#AAAAAA'],
+                  'fill-opacity': 0.7
+        
+                }
+              });
+        
+              map.addSource('Quintana Roo', {
+                'type': 'geojson',
+                'data': './geojson/Quintana.geojson'
+              });
+              map.addLayer({
+                'id': 'Quintana Roo',
+                'type': 'fill',
+                'source': 'Quintana Roo',
+                'layout': {
+                  // Make the layer visible by default.
+                  'visibility': 'visible'
+                },
+                'paint': {
+                  'fill-color': ['match', ['string', ['get', 'MOD_HIDR']], ...statesAndColors, '#AAAAAA'],
+                  'fill-opacity': 0.7
+                }
+              });
+        
+              map.addSource('Campeche', {
+                'type': 'geojson',
+                'data': './geojson/campeche.geojson'
+              });
+              map.addLayer({
+                'id': 'Campeche',
+                'type': 'fill',
+                'source': 'Campeche',
+                'layout': {
+                  // Make the layer visible by default.
+                  'visibility': 'visible'
+                },
+                'paint': {
+                  'fill-color': ['match', ['string', ['get', 'MOD_HIDR']], ...statesAndColors, '#AAAAAA'],
+                  'fill-opacity': 0.7
+                }
+              });
+        
+              map.addSource('Tabasco', {
+                'type': 'geojson',
+                'data': './geojson/tabasco.geojson'
+              });
+              map.addLayer({
+                'id': 'Tabasco',
+                'type': 'fill',
+                'source': 'Tabasco',
+                'layout': {
+                  // Make the layer visible by default.
+                  'visibility': 'visible'
+                },
+                'paint': {
+                  'fill-color': ['match', ['string', ['get', 'MOD_HIDR']], ...statesAndColors, '#AAAAAA'],
+                  'fill-opacity': 0.7
+                }
+              });
+        
+              map.addSource('Chiapas', {
+                'type': 'geojson',
+                'data': './geojson/chiapas.geojson'
+              });
+              map.addLayer({
+                'id': 'Chiapas',
+                'type': 'fill',
+                'source': 'Chiapas',
+                'layout': {
+                  // Make the layer visible by default.
+                  'visibility': 'visible'
+                },
+                'paint': {
+                  'fill-color': ['match', ['string', ['get', 'MOD_HIDR']], ...statesAndColors, '#AAAAAA'],
+                  'fill-opacity': 0.7
+                }
+              });
+        
+              map.addSource('Veracruz', {
+                'type': 'geojson',
+                'data': './geojson/veracruz.geojson'
+              });
+              map.addLayer({
+                'id': 'Veracruz',
+                'type': 'fill',
+                'source': 'Veracruz',
+                'layout': {
+                  // Make the layer visible by default.
+                  'visibility': 'visible'
+                },
+                'paint': {
+                  'fill-color': ['match', ['string', ['get', 'MOD_HIDR']], ...statesAndColors, '#AAAAAA'],
+                  'fill-opacity': 0.7
+                }
+              });
+        
+              map.addSource('Oaxaca', {
+                'type': 'geojson',
+                'data': './geojson/oaxaca.geojson'
+              });
+              map.addLayer({
+                'id': 'Oaxaca',
+                'type': 'fill',
+                'source': 'Oaxaca',
+                'layout': {
+                  // Make the layer visible by default.
+                  'visibility': 'visible'
+                },
+                'paint': {
+                  'fill-color': ['match', ['string', ['get', 'MOD_HIDR']], ...statesAndColors, '#AAAAAA'],
+                  'fill-opacity': 0.7
+                }
+              });
+        
+              map.addLayer({
+                'id': 'Yucatan2',
+                'type': 'line',
+                'source': 'Yucatan',
+                'layout': {},
+                'paint': {
+                  'line-color': ['match', ['string', ['get', 'MOD_HIDR']], ...statesAndColors, '#AAAAAA'],
+                  'line-width': 5
+                }
+              });
+        
+              map.addLayer({
+                'id': 'Oaxaca2',
+                'type': 'line',
+                'source': 'Oaxaca',
+                'layout': {},
+                'paint': {
+                  'line-color': ['match', ['string', ['get', 'MOD_HIDR']], ...statesAndColors, '#AAAAAA'],
+                  'line-width': 5
+                }
+              });
+        
+              map.addLayer({
+                'id': 'Veracruz2',
+                'type': 'line',
+                'source': 'Veracruz',
+                'layout': {},
+                'paint': {
+                  'line-color': ['match', ['string', ['get', 'MOD_HIDR']], ...statesAndColors, '#AAAAAA'],
+                  'line-width': 5
+                }
+              });
+        
+              map.addLayer({
+                'id': 'Tabasco2',
+                'type': 'line',
+                'source': 'Tabasco',
+                'layout': {},
+                'paint': {
+                  'line-color': ['match', ['string', ['get', 'MOD_HIDR']], ...statesAndColors, '#AAAAAA'],
+                  'line-width': 5
+                }
+              });
+        
+              map.addLayer({
+                'id': 'Chiapas2',
+                'type': 'line',
+                'source': 'Chiapas',
+                'layout': {},
+                'paint': {
+                  'line-color': ['match', ['string', ['get', 'MOD_HIDR']], ...statesAndColors, '#AAAAAA'],
+                  'line-width': 5
+                }
+              });
+        
+              map.addLayer({
+                'id': 'Campeche2',
+                'type': 'line',
+                'source': 'Campeche',
+                'layout': {},
+                'paint': {
+                  'line-color': ['match', ['string', ['get', 'MOD_HIDR']], ...statesAndColors, '#AAAAAA'],
+                  'line-width': 5
+                }
+              });
+        
+              map.addLayer({
+                'id': 'Quintana Roo2',
+                'type': 'line',
+                'source': 'Quintana Roo',
+                'layout': {},
+                'paint': {
+                  'line-color': ['match', ['string', ['get', 'MOD_HIDR']], ...statesAndColors, '#AAAAAA'],
+                  'line-width': 5
+                }
+              });
+
+              map.addControl(new mapboxgl.NavigationControl());
+              map.addControl(new mapboxgl.FullscreenControl());
+
+            });   
+        
+            $( "#esconder" ).click(function() {
+                $('#divmin').show(); 
+                $('#divfull').hide(); 
+            });
+
+            $( "#mostrar" ).click(function() {
+                $('#divfull').show(); 
+                $('#divmin').hide(); 
+            });
+
+            $("#cbYucatan").click(function(){
+                if ($('#cbYucatan').is(':checked')) {
+                    map.setLayoutProperty('Yucatan', 'visibility', 'visible');  
+                    map.setLayoutProperty('Yucatan2', 'visibility', 'visible'); 
+                }
+                else{
+                    map.setLayoutProperty('Yucatan', 'visibility', 'none');  
+                    map.setLayoutProperty('Yucatan2', 'visibility', 'none'); 
+                } 
+            }); 
+
+            $("#cbQuintana").click(function(){
+                if ($('#cbQuintana').is(':checked')) {
+                    map.setLayoutProperty('Quintana Roo', 'visibility', 'visible');  
+                    map.setLayoutProperty('Quintana Roo2', 'visibility', 'visible'); 
+                }
+                else{
+                    map.setLayoutProperty('Quintana Roo', 'visibility', 'none');  
+                    map.setLayoutProperty('Quintana Roo2', 'visibility', 'none'); 
+                } 
+            }); 
+
+            $("#cbCampeche").click(function(){
+                if ($('#cbCampeche').is(':checked')) {
+                    map.setLayoutProperty('Campeche', 'visibility', 'visible');  
+                    map.setLayoutProperty('Campeche2', 'visibility', 'visible'); 
+                }
+                else{
+                    map.setLayoutProperty('Campeche', 'visibility', 'none');  
+                    map.setLayoutProperty('Campeche2', 'visibility', 'none'); 
+                } 
+            }); 
+
+            $("#cbChiapas").click(function(){
+                if ($('#cbChiapas').is(':checked')) {
+                    map.setLayoutProperty('Chiapas', 'visibility', 'visible');  
+                    map.setLayoutProperty('Chiapas2', 'visibility', 'visible'); 
+                }
+                else{
+                    map.setLayoutProperty('Chiapas', 'visibility', 'none');  
+                    map.setLayoutProperty('Chiapas2', 'visibility', 'none'); 
+                } 
+            }); 
+
+            $("#cbTabasco").click(function(){
+                if ($('#cbTabasco').is(':checked')) {
+                    map.setLayoutProperty('Tabasco', 'visibility', 'visible');  
+                    map.setLayoutProperty('Tabasco2', 'visibility', 'visible'); 
+                }
+                else{
+                    map.setLayoutProperty('Tabasco', 'visibility', 'none');  
+                    map.setLayoutProperty('Tabasco2', 'visibility', 'none'); 
+                } 
+            }); 
+
+            $("#cbVeracruz").click(function(){
+                if ($('#cbVeracruz').is(':checked')) {
+                    map.setLayoutProperty('Veracruz', 'visibility', 'visible');  
+                    map.setLayoutProperty('Veracruz2', 'visibility', 'visible'); 
+                }
+                else{
+                    map.setLayoutProperty('Veracruz', 'visibility', 'none');  
+                    map.setLayoutProperty('Veracruz2', 'visibility', 'none'); 
+                } 
+            }); 
+
+            $("#cbOaxaca").click(function(){
+                if ($('#cbOaxaca').is(':checked')) {
+                    map.setLayoutProperty('Oaxaca', 'visibility', 'visible');  
+                    map.setLayoutProperty('Oaxaca2', 'visibility', 'visible'); 
+                }
+                else{
+                    map.setLayoutProperty('Oaxaca', 'visibility', 'none');  
+                    map.setLayoutProperty('Oaxaca2', 'visibility', 'none'); 
+                } 
+            }); 
+
+            $("#fun_docs").click(function(){
+                $('#div_mapa').hide(); 
+            }); 
+
+            $("#fun_map").click(function(){
+                $('#div_mapa').show(); 
+            }); 
+
+          </script>
+    </body>
+</html>
